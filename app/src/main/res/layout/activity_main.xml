@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/txt_main"
         android:layout_width="377dp"
-        android:layout_height="177dp"
+        android:layout_height="257dp"
         android:text="@string/initial"
         android:textAlignment="center"
         android:textSize="50dp"
