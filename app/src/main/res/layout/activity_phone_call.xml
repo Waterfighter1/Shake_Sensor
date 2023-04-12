@@ -11,7 +11,8 @@
         android:id="@+id/imageView"
         android:layout_width="415dp"
         android:layout_height="857dp"
-        app:srcCompat="@drawable/mom"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="5dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mom" />
 </androidx.constraintlayout.widget.ConstraintLayout>

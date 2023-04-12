@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     int shakeCounter = 0;
     boolean activityActivated = false;
     String[] phrases = {"I said DON'T SHAKE ME!!!","Okay, that's rude.","Three Times? Seriously?","One more time, and you'll regret it!","Last CHANCE"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
