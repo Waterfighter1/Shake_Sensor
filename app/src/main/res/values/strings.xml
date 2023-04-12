@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Shake_Sensor</string>
+    <string name="initial">Don\'t Shake Me\n>:(</string>
+    <string name="sorry">Apologize</string>
+</resources>
