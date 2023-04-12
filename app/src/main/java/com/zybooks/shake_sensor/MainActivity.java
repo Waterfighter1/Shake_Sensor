@@ -2,6 +2,7 @@ package com.zybooks.shake_sensor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     int shakeCounter = 0;
+    boolean activityActivated = false;
     String[] phrases = {"I said DON'T SHAKE ME!!!","Okay, that's rude.","Three Times? Seriously?","One more time, and you'll regret it!","Last CHANCE"};
 
     @Override
@@ -30,16 +32,9 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (shakeCounter > phrases.length - 2) {
-                    mainTxt.setText("Now you don't GET to apologize :(");
-                    shakeCounter++;
-                }
-                else {
                     btn.setVisibility(View.GONE);
                     mainTxt.setText("Don\'t Shake Me\n>:(");
                     shakeCounter++;
-                }
-
             }
         });
 
@@ -59,11 +54,19 @@ public class MainActivity extends AppCompatActivity {
                     float z_accel = sensorEvent.values[2];
 
                     if (x_accel > 2 || x_accel < -2 || y_accel > 12 || y_accel < -12 ||  z_accel > 2 || z_accel < -2) {
-                        if (shakeCounter > phrases.length - 1) {
-                            // Display New Activity
+                        if (shakeCounter > phrases.length - 1 && activityActivated == false) {
+                            startActivity(new Intent(MainActivity.this, PhoneCall.class));
+                            activityActivated = true;
+                            shakeCounter = 0;
+                        }
+                        else if (activityActivated == true) {
+
                         }
                         else {
                             mainTxt.setText(phrases[shakeCounter]);
+                            if (!(shakeCounter > phrases.length - 1)) {
+                                activityActivated = false;
+                            }
                         }
                         btn.setVisibility(View.VISIBLE);
                     }
