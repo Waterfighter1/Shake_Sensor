@@ -2,6 +2,7 @@ package com.zybooks.shake_sensor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     int shakeCounter = 0;
     String[] phrases = {"I said DON'T SHAKE ME!!!","Okay, that's rude.","Three Times? Seriously?","One more time, and you'll regret it!","Last CHANCE"};
-
+    boolean triggeredEmergency = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     if (x_accel > 2 || x_accel < -2 || y_accel > 12 || y_accel < -12 ||  z_accel > 2 || z_accel < -2) {
                         if (shakeCounter > phrases.length - 1) {
                             // Display New Activity
+                            if (!triggeredEmergency) {
+                                startActivity(new Intent(MainActivity.this, EmergencyCall.class));
+                                triggeredEmergency = true;
+                            }
                         }
                         else {
                             mainTxt.setText(phrases[shakeCounter]);
